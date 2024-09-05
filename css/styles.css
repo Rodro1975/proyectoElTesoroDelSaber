@@ -1,0 +1,977 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+/* ESTILOS PARA LA BARRA DE NAVEGACION */
+.navbar {
+  background: linear-gradient(90deg, #ff450d, #fd8b3e);
+  padding: 10px 0;
+  font-size: 1.5em;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  padding: 15px 20px;
+}
+
+.navbar-brand:hover {
+  color: #fd8b3e;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 2em;
+}
+
+.navbar-nav .nav-link:hover {
+  font-weight: bold;
+  background-color: #fd8b3e;
+  border-radius: 10px;
+}
+
+.navbar-toggler {
+  border-color: #ff450d;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%284, 4, 4, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  /* Color del ícono del menú desplegable */
+}
+
+/* Asegura que el texto y el logo se centren verticalmente */
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-brand {
+  font-weight: bold; /* Negrita para la marca */
+}
+
+/* ESTILOS PARA LA SECCION HERO DE LA PAGINA PRINCIPAL */
+.hero {
+  background: url(../images/libreria.jpg) fixed center center/cover;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: #ff450d;
+  opacity: 0.5;
+}
+
+.hero-content {
+  padding: 0.3em;
+  position: absolute;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  color: white;
+  margin: auto;
+}
+
+.hero-title {
+  line-height: 1.5;
+  font-size: 3.5em;
+}
+
+.hero-p {
+  line-height: 1.5;
+  font-size: 1em;
+}
+
+.custom-btn {
+  background-color: #ff450d; /* Color de fondo */
+  border-color: #ff450d; /* Asegura que el borde también tenga el mismo color */
+  color: #ffffff; /* Color del texto en blanco */
+}
+
+.custom-btn:hover {
+  background-color: #fd8b3e; /* Color de fondo al pasar el cursor */
+  border-color: #fd8b3e; /* Asegura que el borde también cambie de color */
+  color: #ffffff; /* Color del texto en blanco al pasar el cursor */
+}
+
+.botones {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.botones button {
+  padding: 10px 20px;
+  background-color: #ff450d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 40px;
+}
+
+.botones button:hover {
+  background-color: white;
+  color: #ff450d;
+  font-weight: bolder;
+}
+
+.wall {
+  height: auto; /* Permite que la altura se ajuste automáticamente al contenido */
+}
+
+/* ESTILOS PARA SECCION CARRUSEL */
+.carousel-inner img {
+  width: 100%;
+  max-height: 800px;
+}
+
+.carrusel {
+  height: 90vh; /* Altura de la sección carrusel */
+  width: 100%; /* Ancho completo */
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -5px; /* Ajusta este valor para reducir el espacio entre el carrusel y la siguiente sección */
+}
+
+/*ESTILOS PARA MODALES*/
+.modal-content h1 {
+  color: #ff450d;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bolder;
+}
+
+.modal-content p {
+  color: white;
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 20px;
+  text-shadow: black 2px 5px;
+  font-weight: bolder;
+}
+
+.modal-content .btn-close {
+  background-color: #ff450d;
+  border: none;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content .btn-close:hover {
+  background-color: #e8430c;
+}
+
+/*ESTILOS PARA SECCIONES 1 Y 2*/
+.secciones {
+  height: 90vh;
+  margin-top: 0;
+}
+
+.secciones .row {
+  margin-top: 2rem;
+}
+
+footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 -4px 6px -2px gray;
+}
+
+/* ESTILOS PARA EL FORMULARIO DE REGISTRO DE USUARIOS */
+.container {
+  max-width: 800px; /* Limita el ancho del formulario */
+  background-color: white; /* Fondo blanco para el formulario */
+  padding: 30px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  margin-top: 120px !important; /* Espacio superior */
+  margin-bottom: 30px; /* Espacio inferior */
+}
+
+/* Botones personalizados */
+.btn-registrar {
+  background-color: #4caf50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+}
+
+.btn-registrar:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el cursor */
+}
+
+.btn-iniciar {
+  background-color: #ff450d; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+}
+
+.btn-iniciar:hover {
+  background-color: #fd8b3e; /* Color de fondo al pasar el cursor */
+}
+
+/* Estilos de los campos de entrada */
+.form-control {
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Espaciado y alineación para los campos de contraseña */
+.row.g-3 {
+  align-items: center; /* Centrar verticalmente los elementos */
+}
+
+/* Validación de formularios */
+.was-validated .form-control:valid,
+.was-validated .form-control:invalid {
+  background-image: none; /* Quitar iconos de validación predeterminados */
+}
+
+/* Estilos para mensajes de validación */
+.valid-feedback,
+.invalid-feedback {
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+}
+
+/* ESTILOS PARA EL FORMULARIO INICIAR SESION */
+.Form-login {
+  background: url(../images/libroMagico.jpg) fixed center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px; /* Añadir padding para espacios pequeños */
+}
+
+/* Contenedor de contenido del formulario */
+.login-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: rgba(255, 69, 13, 0.9); /* Color de fondo con transparencia */
+  padding: 30px 35px; /* Mayor padding para más espacio interior */
+  border-radius: 10px; /* Bordes redondeados para suavizar la apariencia */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más suave para mayor profundidad */
+}
+
+/* Título del formulario */
+/* Estilos para el título con colores invertidos */
+.title {
+  color: #ffffff; /* Color del texto blanco */
+  font-weight: bold;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombras de texto oscuras */
+}
+
+/* Estilos de las etiquetas */
+.login-content label {
+  color: #fd8b3e;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase; /* Texto en mayúsculas para mejor visibilidad */
+}
+
+/* Estilos de los enlaces */
+.login-content a {
+  color: #fd8b3e;
+  font-weight: bold;
+  margin-top: 15px;
+  text-decoration: none; /* Sin subrayado para un estilo más limpio */
+  transition: color 0.3s; /* Transición suave al cambiar el color */
+}
+
+.login-content a:hover {
+  color: #ffffff; /* Cambia a blanco al pasar el cursor */
+}
+
+/* Estilos para los campos de entrada */
+.input {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: white;
+  border-bottom: solid 2px #fd8b3e;
+  padding: 10px 0; /* Mayor padding para mejor usabilidad */
+  margin-bottom: 20px; /* Espacio entre los campos */
+  font-size: 1em;
+  transition: border-color 0.3s; /* Transición suave para el cambio de color del borde */
+}
+
+.input:focus {
+  border-bottom-color: #ffffff; /* Cambia a blanco al enfocar */
+}
+
+/* Placeholder de los campos de entrada */
+input::placeholder {
+  color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Color blanco con transparencia para placeholders */
+}
+
+/* Estilos del botón del formulario */
+.Form-login button {
+  color: white;
+  border: none;
+  background: linear-gradient(90deg, #ff450d, #fd8b3e);
+  padding: 12px 20px; /* Ajustar el padding para mejor apariencia */
+  margin-top: 25px;
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 5px; /* Añadir bordes redondeados */
+  transition: background 0.3s, transform 0.2s; /* Efecto suave al hacer hover */
+}
+
+.Form-login button:hover {
+  background: linear-gradient(
+    90deg,
+    #fd8b3e,
+    #ff450d
+  ); /* Cambia gradiente al pasar el cursor */
+  transform: scale(1.05); /* Escala ligeramente el botón al hacer hover */
+}
+
+/* ESTILOS PARA LA SECCION DE BIENVENIDA PARA LOS USUARIOS */
+.welcome {
+  background: url(../images/libros.jpg) fixed center/cover;
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: #ff450d;
+  opacity: 0.5;
+}
+
+.welcome-message {
+  padding: 0.3em;
+  position: absolute;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  margin: auto;
+}
+
+.cliente-id {
+  font-weight: bold;
+  color: #7cd353;
+  font-size: 2em;
+  padding: 0 20px;
+}
+
+.cliente-nombre {
+  font-weight: bold;
+  color: #ffef13;
+  font-size: 2em;
+}
+
+.cliente-apellido-paterno {
+  font-weight: bold;
+  color: #ffef13;
+  font-size: 2em;
+}
+
+.cliente-apellido-materno {
+  font-weight: bold;
+  color: #ffef13;
+  font-size: 2em;
+}
+
+.welcome-message h3 {
+  font-size: 3em;
+  padding: 20px 20px;
+  box-shadow: 0px 4px 15px rgb(255, 255, 255);
+  margin-bottom: 20px;
+}
+
+/* ESTILOS GENERALES PARA LAS TABLAS DE PEDIDOS*/
+.pedidos {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin-top: 90px;
+  margin: auto;
+}
+
+.pedidos-content {
+  margin-top: 90px;
+}
+
+.pedidos h1 {
+  font-size: 2em;
+  color: #fd8b3e;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pedidos table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.pedidos th,
+.pedidos td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.pedidos th {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+}
+
+.pedidos tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pedidos tr:hover {
+  background-color: #ddd;
+}
+
+.pedidos td[colspan='5'] {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
+/* ESTILOS PARA LA BIENVENIDA DE EMPLEADOS */
+.welcome-1 {
+  background: url(../images/libros.jpg) fixed center/cover;
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-1::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: #ff450d;
+  opacity: 0.5;
+}
+
+/* ESTILOS PARA FORMULARIO CONSULTAR PL */
+.form-consultar {
+  background: #ff450d29;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-consultar .container {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-consultar h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ff450d;
+  font-size: 40px;
+}
+
+.form-consultar .form-label {
+  width: 100%;
+  font-weight: bold;
+  color: #fd8b3e;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-consultar .form-control {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-consultar .botones {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Coloca el botón al pie del formulario */
+  margin-top: 20px;
+}
+
+.form-consultar .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #fd8b3e;
+  background: #ff450d;
+  color: white;
+}
+
+.form-consultar .btn:hover {
+  background: #fd8b3e;
+}
+
+/* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+table input[type='text'] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.pedidos p {
+  margin-top: 90px;
+}
+
+/* Estilo para el botón "Guardar" */
+button[type='submit'] {
+  background-color: #009879;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #007f65;
+}
+
+/* Estilo para el botón Cancelar */
+.cancelar {
+  display: inline-block;
+  background-color: #d9534f;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.cancelar:hover {
+  background-color: #c9302c;
+}
+
+/* Estilo para las acciones editar/ borrar*/
+.pedidos .borrar {
+  color: #c9302c;
+}
+
+.pedidos .borrar:hover {
+  font-weight: bolder;
+}
+
+.pedidos .editar {
+  color: #007f65;
+}
+
+.pedidos .editar:hover {
+  font-weight: bolder;
+}
+
+/* ESTILOS PARA FORMULARIO MODIFICAR PL */
+.form-editar {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-editar .content {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-editar .form-control {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-editar .form-label {
+  width: 100%;
+  font-weight: bold;
+  color: #fd8b3e;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.form-editar h1 {
+  color: #ff450d;
+  margin-bottom: 20px;
+}
+
+/* ESTILOS PARA FORMULARIO ELIMINAR PL */
+.form-eliminar {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-eliminar .content {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-eliminar .form-control {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-eliminar .form-label {
+  width: 100%;
+  font-weight: bold;
+  color: #fd8b3e;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.form-eliminar h1 {
+  color: #ff450d;
+  margin-bottom: 20px;
+}
+
+/* ESTILOS PARA REGISTRAR PEDIDOS PL */
+.form-regPedidos {
+  height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* Fondo suave para contraste */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px; /* Aumenta el ancho máximo para mayor comodidad */
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-header h2 {
+  color: #ff450d;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.form-label {
+  width: 100%;
+  font-weight: bold;
+  color: #fd8b3e;
+  margin-bottom: 5px; /* Menor margen para una mejor alineación */
+  font-size: 16px;
+  display: block; /* Asegura que la etiqueta ocupe toda la línea */
+}
+
+.form-container input[type='text'],
+.form-container input[type='number'],
+.form-container input[type='date'] {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ddd; /* Bordes más suaves */
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.form-container input[type='text']:focus,
+.form-container input[type='number']:focus,
+.form-container input[type='date']:focus {
+  border-color: #fd8b3e; /* Color de borde al enfocar */
+  outline: none; /* Elimina el borde azul predeterminado del navegador */
+  box-shadow: 0 0 5px rgba(253, 139, 62, 0.5); /* Sombra suave al enfocar */
+}
+
+/*ESTILOS PARA LAS SECICONES 1 Y 2*/
+/* Add some styling for the genre images */
+.secciones img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhance card appearance */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* Flexibilidad de la tabla MEDIA QUERIES*/
+@media (max-width: 600px) {
+  table thead {
+    display: none;
+  }
+
+  table,
+  table tbody,
+  table tr,
+  table td {
+    display: block;
+    width: 100%;
+  }
+
+  table tr {
+    margin-bottom: 15px;
+  }
+
+  table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  button[type='submit'] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/*MEDIA QUERIES*/
+
+/* Flexibilidad de la tabla MEDIA QUERIES*/
+@media (max-width: 600px) {
+  table thead {
+    display: none;
+  }
+
+  table,
+  table tbody,
+  table tr,
+  table td {
+    display: block;
+    width: 100%;
+  }
+
+  table tr {
+    margin-bottom: 15px;
+  }
+
+  table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  button[type='submit'] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center; /* Centra los enlaces en el menú desplegable */
+  }
+  .navbar-collapse {
+    background: linear-gradient(
+      90deg,
+      #ff450d,
+      #fd8b3e
+    ); /* Mantiene el fondo degradado en el menú desplegable */
+  }
+
+  .carrusel {
+    height: 90vh; /* Altura de la sección carrusel */
+    width: 100%; /* Ancho completo */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -180px; /* Ajusta este valor para reducir el espacio entre el carrusel y la siguiente sección */
+  }
+}
+
+/* Para el espaciado en pantallas pequeñas secciones 1 y 2*/
+@media (max-width: 767.98px) {
+  .carrusel {
+    height: 90vh; /* Altura de la sección carrusel */
+    width: 100%; /* Ancho completo */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -180px; /* Ajusta este valor para reducir el espacio entre el carrusel y la siguiente sección */
+  }
+
+  .secciones {
+    margin-top: 0; /* Ajusta el margen superior para pantallas pequeñas */
+  }
+}
+
+/* Para el espaciado en pantallas 1024px secciones 1 y 2*/
+@media (max-width: 1024px) {
+  .carrusel {
+    height: 90vh; /* Altura de la sección carrusel */
+    width: 100%; /* Ancho completo */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 180px; /* Ajusta este valor para reducir el espacio entre el carrusel y la siguiente sección */
+  }
+
+  .secciones {
+    margin-top: 3rem; /* Ajusta el margen superior para pantallas pequeñas */
+  }
+}
+
+/* Para el espaciado en pantallas 1280px secciones 1 y 2*/
+@media (max-width: 1280px) {
+  .carrusel {
+    height: 90vh; /* Altura de la sección carrusel */
+    width: 100%; /* Ancho completo */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 180px; /* Ajusta este valor para reducir el espacio entre el carrusel y la siguiente sección */
+  }
+
+  .secciones {
+    margin-top: 3rem; /* Ajusta el margen superior para pantallas pequeñas */
+  }
+}

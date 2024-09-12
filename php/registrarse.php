@@ -2,9 +2,30 @@
 // Incluir el archivo de conexión con PDO
 require 'conexion.php';
 
-// Verifica si el formulario ha sido enviado
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario y sanitizarlos
+    // Verificar si reCAPTCHA ha sido resuelto
+    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+        $captcha = $_POST['g-recaptcha-response'];
+        $secretKey = '6LfEBUEqAAAAAJVXrKSpNY994FtbMtJlw5WYP_Uf'; // Tu clave secreta
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
+        $responseKeys = json_decode($response, true);
+
+        if (intval($responseKeys["success"]) !== 1) {
+            echo "Validación reCAPTCHA fallida. Inténtalo de nuevo.";
+            exit;
+        }
+    } else {
+        echo "Por favor, verifica que no eres un robot.";
+        exit;
+    }
+
+    // Obtener los datos del formulario
     $ID_usuario = $_POST['ID_usuario'];
     $nombre = $_POST['nombre'];
     $apellidoPaterno = $_POST['apellidoPaterno'];
@@ -19,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar que las contraseñas coincidan
     if ($password !== $confirmPassword) {
-        echo "Las contraseñas no coinciden o no la has confirmado.";
+        echo "Las contraseñas no coinciden.";
         exit;
     }
 
@@ -36,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellidoPaterno', $apellidoPaterno);
         $stmt->bindParam(':apellidoMaterno', $apellidoMaterno);
-        $stmt->bindParam(':edad', $edad);
+        $stmt->bindParam(':edad', $edad, PDO::PARAM_INT);
         $stmt->bindParam(':sexo', $sexo);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':telefono', $telefono);
@@ -62,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -71,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Registrarse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfEBUEqAAAAAJbbWaz9QcxvcyJsID--UMZurnPy"></script>
 </head>
 
 <body>
@@ -101,12 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
 
-
-
-    <!-- formulario prueba -->
-    <!-- Contenedor principal del formulario -->
     <div class="container mt-5 pt-4">
-        <form class="row g-3 needs-validation" action="../php/registrarse.php" method="POST" novalidate>
+        <form class="row g-3 needs-validation" id="demo-form" action="../php/registrarse.php" method="POST" novalidate>
             <!-- Ajuste de clases para responsive design -->
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="IDinput" class="form-label">ID Usuario</label>
@@ -117,26 +136,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="nombreInput" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Escribe tu nombre" required data-bs-toggle="tooltip" data-bs-placement="top" title="Escribe tu primer nombre">
-                <div class="valid-feedback">Nombre Capturado</div>
-                <div class="invalid-feedback">Introduce el nombre</div>
+                <div class="invalid-feedback">Introduce el nombre.</div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="apellidoPaternoIn" class="form-label">Apellido Paterno</label>
                 <input type="text" class="form-control" id="apellidoPaternoIn" name="apellidoPaterno" placeholder="Escribe tu apellido paterno" required data-bs-toggle="tooltip" data-bs-placement="top" title="Escribe tu primer apellido">
-                <div class="invalid-feedback">Introduce el apellido paterno</div>
+                <div class="invalid-feedback">Introduce el apellido paterno.</div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="apellidoMaternoIn" class="form-label">Apellido Materno</label>
                 <input type="text" class="form-control" id="apellidoMaternoIn" name="apellidoMaterno" placeholder="Escribe tu apellido materno" required data-bs-toggle="tooltip" data-bs-placement="top" title="Escribe tu segundo apellido">
-                <div class="invalid-feedback">Introduce el apellido materno</div>
+                <div class="invalid-feedback">Introduce el apellido materno.</div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="edadInput" class="form-label">Edad</label>
-                <input type="number" class="form-control" id="edadInput" name="edad" placeholder="Escribe tu edad" required data-bs-toggle="tooltip" data-bs-placement="top" title="Introduce tu edad actual utilizando las flechas o escribela directamente">
-                <div class="invalid-feedback">Introduce una edad válida</div>
+                <input type="number" class="form-control" id="edadInput" name="edad" placeholder="Escribe tu edad" required data-bs-toggle="tooltip" data-bs-placement="top" title="Introduce tu edad actual utilizando las flechas o escríbela directamente">
+                <div class="invalid-feedback">Introduce una edad válida.</div>
             </div>
 
             <div class="col-12 mb-3">
@@ -148,19 +166,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="Otro">Otro</option>
                     <option value="Prefiero no especificar">Prefiero no especificar</option>
                 </select>
-                <div class="invalid-feedback">Selecciona una opción</div>
+                <div class="invalid-feedback">Selecciona una opción.</div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="emailInput" class="form-label">Email</label>
-                <input type="email" class="form-control" id="emailInput" name="email" placeholder="Escribe tu email" required data-bs-toggle="tooltip" data-bs-placement="top" title="Escribe tu correo electronico: ejemplo@correo.com">
-                <div class="invalid-feedback">Introduce un email válido</div>
+                <input type="email" class="form-control" id="emailInput" name="email" placeholder="Escribe tu email" required data-bs-toggle="tooltip" data-bs-placement="top" title="Escribe tu correo electrónico: ejemplo@correo.com">
+                <div class="invalid-feedback">Introduce un email válido.</div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <label for="telefonoInput" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telefonoInput" name="telefono" placeholder="Escribe tu teléfono" required data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa un número telefónico valido">
-                <div class="invalid-feedback">Introduce un número de teléfono válido</div>
+                <input type="tel" class="form-control" id="telefonoInput" name="telefono" placeholder="Escribe tu teléfono" required data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa un número telefónico válido">
+                <div class="invalid-feedback">Introduce un número de teléfono válido.</div>
             </div>
 
             <input type="hidden" name="tipoUsuario" value="CL">
@@ -172,8 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="inputPassword" class="col-form-label">Password</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword" class="form-control" name="password" aria-describedby="passwordHelpInline" required pattern="(?=.*[A-Z])(?=.*\W).{8,20}" data-bs-toggle="tooltip" data-bs-placement="top" title="“Longitud mínima de 8 posiciones, 
-con letras y números y por lo menos un carácter especial (#,$,-,_,&,%)">
+                        <input type="password" id="inputPassword" class="form-control" name="password" aria-describedby="passwordHelpInline" required pattern="(?=.*[A-Z])(?=.*\W).{8,20}" data-bs-toggle="tooltip" data-bs-placement="top" title="Longitud mínima de 8 posiciones, con letras y números y por lo menos un carácter especial (#,$,-,_,&,%)">
                         <div class="invalid-feedback">El password debe tener entre 8 y 20 caracteres, incluyendo una letra mayúscula y un carácter especial.</div>
                     </div>
                     <div class="col-auto">
@@ -201,26 +218,29 @@ con letras y números y por lo menos un carácter especial (#,$,-,_,&,%)">
                 </div>
             </div>
 
-            <!-- Botones de acción -->
+            <!-- Botón para enviar -->
             <div class="col-12 d-flex justify-content-between mt-3">
                 <a href="../php/iniciarSesion.php" class="btn btn-iniciar">Iniciar Sesión</a>
-                <button type="submit" class="btn btn-registrar" name="registrar">Registrar usuario</button>
+                <button type="submit" class="g-recaptcha btn btn-registrar"
+                    data-sitekey="6LfEBUEqAAAAAJbbWaz9QcxvcyJsID--UMZurnPy"
+                    data-callback="onSubmit"
+                    data-action="submit">Registrar usuario</button>
             </div>
         </form>
     </div>
 
 
-    <!-- Bootstrap JS (requerido para el menú desplegable) -->
+    <!-- Bootstrap JS y reCAPTCHA -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script>
-        // Validación de formularios con Bootstrap 5
         (function() {
             'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            // Validación del formulario con Bootstrap
             var forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
             Array.prototype.slice.call(forms)
                 .forEach(function(form) {
                     form.addEventListener('submit', function(event) {
@@ -228,11 +248,22 @@ con letras y números y por lo menos un carácter especial (#,$,-,_,&,%)">
                             event.preventDefault()
                             event.stopPropagation()
                         }
-
                         form.classList.add('was-validated')
                     }, false)
                 })
-        })()
+
+            // Función de reCAPTCHA
+            grecaptcha.ready(function() {
+                document.querySelector('.btn-registrar').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    grecaptcha.execute();
+                });
+            });
+        })();
+
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
     </script>
 </body>
 
